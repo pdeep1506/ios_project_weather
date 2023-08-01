@@ -36,7 +36,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
 //        print("User searched text \(textField.text)" ?? "")
         if let city = textField.text{
             userSerchedLocation = city
-//            print("city \(city)")
+            print("city \(city)")
         }
         cityNameLabel.text = userSerchedLocation
         return true;
@@ -58,7 +58,8 @@ class ViewController: UIViewController,UITextFieldDelegate {
         locationManager.requestWhenInUseAuthorization()
         
 
-        locationManager.startUpdatingLocation()
+//        locationManager.startUpdatingLocation()
+        locationManager.requestLocation()
         
         
     }
@@ -69,7 +70,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
             userSerchedLocation = searchedCity
         }
         cityNameLabel.text = userSerchedLocation
-//        print(userSerchedLocation)
+        print(userSerchedLocation)
         
     }
     
