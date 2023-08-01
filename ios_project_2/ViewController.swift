@@ -10,6 +10,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var conditionLabel: UILabel!
     @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var imageChangeLabel: UIImageView!
+
     private var userSearchedLocation: String = ""
     private var activeBtn: String = "C"
 
@@ -38,6 +39,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         locationManager = CLLocationManager()
         locationDelegate = MyLocationDelegate(apiKey: apiKey, viewController: self)
         locationManager.delegate = locationDelegate
+        celbtn.backgroundColor = UIColor.blue
+        ferenhitBtn.backgroundColor = UIColor.gray
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -57,6 +60,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
            let temperatureFahrenheit = locationDelegate?.lastFetchedFahrenheitTemperature {
             updateTemperatureLabels(with: temperatureCelsius, temperatureFahrenheit: temperatureFahrenheit, conditionCode: lastFetchedConditionCode)
         }
+        celbtn.backgroundColor = UIColor.blue
+        ferenhitBtn.backgroundColor = UIColor.red
     }
 
     @IBAction func onCelBtn(_ sender: Any) {
@@ -65,6 +70,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
            let temperatureFahrenheit = locationDelegate?.lastFetchedFahrenheitTemperature {
             updateTemperatureLabels(with: temperatureCelsius, temperatureFahrenheit: temperatureFahrenheit, conditionCode: lastFetchedConditionCode)
         }
+        celbtn.backgroundColor = UIColor.red
+        ferenhitBtn.backgroundColor = UIColor.blue
     }
 
     @IBAction func onLocationBtnPressed(_ sender: Any) {
