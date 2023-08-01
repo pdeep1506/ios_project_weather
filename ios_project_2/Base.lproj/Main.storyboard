@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -177,13 +177,16 @@
                     <connections>
                         <outlet property="celbtn" destination="RH5-Qo-OBI" id="TS6-6v-H87"/>
                         <outlet property="cityNameLabel" destination="oU0-wo-Vt3" id="XB3-ZL-3ci"/>
+                        <outlet property="conditionLabel" destination="euO-3l-qaV" id="aKR-lI-jDl"/>
                         <outlet property="ferenhitBtn" destination="8TA-sM-jne" id="jkg-5Y-EuM"/>
+                        <outlet property="imageChangeLabel" destination="LdP-AD-TwP" id="quT-At-FAI"/>
                         <outlet property="searchTextField" destination="KzA-sJ-ZkX" id="Iq2-Q1-nUf"/>
+                        <outlet property="tempLabel" destination="fv0-HC-qzz" id="8gQ-9p-npi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-437" y="17"/>
+            <point key="canvasLocation" x="-624" y="-4"/>
         </scene>
     </scenes>
     <resources>
