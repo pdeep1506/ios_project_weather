@@ -13,6 +13,8 @@
 		0BF12D1D2A772BA7002EE642 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BF12D1B2A772BA7002EE642 /* Main.storyboard */; };
 		0BF12D1F2A772BA9002EE642 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BF12D1E2A772BA9002EE642 /* Assets.xcassets */; };
 		0BF12D222A772BA9002EE642 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BF12D202A772BA9002EE642 /* LaunchScreen.storyboard */; };
+		81751D5A2A79E55100AA69E4 /* CityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81751D592A79E55100AA69E4 /* CityViewController.swift */; };
+		81997F462A7B04F8002BCFDE /* WeatherModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81997F452A7B04F8002BCFDE /* WeatherModal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		0BF12D1E2A772BA9002EE642 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0BF12D212A772BA9002EE642 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0BF12D232A772BA9002EE642 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		81751D592A79E55100AA69E4 /* CityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityViewController.swift; sourceTree = "<group>"; };
+		81997F452A7B04F8002BCFDE /* WeatherModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 				0BF12D1E2A772BA9002EE642 /* Assets.xcassets */,
 				0BF12D202A772BA9002EE642 /* LaunchScreen.storyboard */,
 				0BF12D232A772BA9002EE642 /* Info.plist */,
+				81751D592A79E55100AA69E4 /* CityViewController.swift */,
+				81997F452A7B04F8002BCFDE /* WeatherModal.swift */,
 			);
 			path = ios_project_2;
 			sourceTree = "<group>";
@@ -141,6 +147,8 @@
 				0BF12D1A2A772BA7002EE642 /* ViewController.swift in Sources */,
 				0BF12D162A772BA7002EE642 /* AppDelegate.swift in Sources */,
 				0BF12D182A772BA7002EE642 /* SceneDelegate.swift in Sources */,
+				81751D5A2A79E55100AA69E4 /* CityViewController.swift in Sources */,
+				81997F462A7B04F8002BCFDE /* WeatherModal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

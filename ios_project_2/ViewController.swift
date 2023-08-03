@@ -1,22 +1,30 @@
 import CoreLocation
 import UIKit
 
+
 class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var celbtn: UIButton!
     @IBOutlet weak var ferenhitBtn: UIButton!
-    @IBOutlet weak var cityNameLabel: UILabel!
     @IBOutlet weak var conditionLabel: UILabel!
     @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var imageChangeLabel: UIImageView!
 
+    @IBOutlet weak var citiesBtn: UIButton!
+    @IBOutlet weak var cityNameLabel: UILabel!
+    
     private var userSearchedLocation: String = ""
     private var activeBtn: String = "C"
 
     var locationManager: CLLocationManager!
     var locationDelegate: MyLocationDelegate?
 
+    
+    var searchedCity : [WeatherData] = []
+
+    let defaults = UserDefaults.standard
+    
     private let apiKey = "f02ae5f044a34fa68a6205402230108"
 
     let weatherConditionImageMap: [Int: String] = [
@@ -35,14 +43,60 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         searchTextField.delegate = self
         locationManager = CLLocationManager()
         locationDelegate = MyLocationDelegate(apiKey: apiKey, viewController: self)
         locationManager.delegate = locationDelegate
-        celbtn.backgroundColor = UIColor.blue
-        ferenhitBtn.backgroundColor = UIColor.gray
+        celbtn.backgroundColor = UIColor.systemBlue
+        celbtn.setTitleColor(UIColor.white, for: .normal)
+        celbtn.layer.cornerRadius = 5
+        celbtn.clipsToBounds = true
+        
+        ferenhitBtn.backgroundColor = UIColor.clear
+        ferenhitBtn.setTitleColor(UIColor.white, for: .normal)
+        ferenhitBtn.layer.cornerRadius = 5
+        ferenhitBtn.clipsToBounds = true
+        
     }
 
+    @IBAction func onCitiesBtn(_ sender: UIButton) {
+        
+        performSegue(withIdentifier: "goToCities", sender: self)
+      
+        //dismiss(animated:true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToCities" {
+            let destination = segue.destination as! CityViewController
+            destination.activeBtn = activeBtn;
+        }
+    }
+    
+
+    
+    func saveSearchedList(){
+        var searchDefaults : [WeatherData] = [];
+        
+        if let data = UserDefaults.standard.data(forKey: "searchedListKey") {
+                do {
+                    searchDefaults = try JSONDecoder().decode([WeatherData].self, from: data)
+                    
+                } catch {
+                    print("Error decoding searchedList: \(error)")
+                }
+            }
+        let allSearchedlist = searchDefaults + searchedCity;
+        
+        do {
+               let encodedData = try JSONEncoder().encode(allSearchedlist)
+               UserDefaults.standard.set(encodedData, forKey: "searchedListKey")
+           } catch {
+               print("Error encoding searchedList: \(error)")
+           }
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.endEditing(true)
         if let city = textField.text {
@@ -53,25 +107,34 @@ class ViewController: UIViewController, UITextFieldDelegate {
         cityNameLabel.text = userSearchedLocation
         return true
     }
-
+ 
     @IBAction func onFerClickBtn(_ sender: Any) {
         activeBtn = "F"
+        ferenhitBtn.backgroundColor = UIColor.systemBlue
+        ferenhitBtn.setTitleColor(UIColor.white, for: .normal)
+        
+        celbtn.backgroundColor = UIColor.clear
+        celbtn.setTitleColor(UIColor.white, for: .normal)
+        
         if let temperatureCelsius = locationDelegate?.lastFetchedCelsiusTemperature,
            let temperatureFahrenheit = locationDelegate?.lastFetchedFahrenheitTemperature {
             updateTemperatureLabels(with: temperatureCelsius, temperatureFahrenheit: temperatureFahrenheit, conditionCode: lastFetchedConditionCode)
         }
-        celbtn.backgroundColor = UIColor.blue
-        ferenhitBtn.backgroundColor = UIColor.red
+        
     }
 
     @IBAction func onCelBtn(_ sender: Any) {
         activeBtn = "C"
+        celbtn.backgroundColor = UIColor.systemBlue
+        celbtn.setTitleColor(UIColor.white, for: .normal)
+        
+        ferenhitBtn.backgroundColor = UIColor.clear
+        ferenhitBtn.setTitleColor(UIColor.white, for: .normal)
         if let temperatureCelsius = locationDelegate?.lastFetchedCelsiusTemperature,
            let temperatureFahrenheit = locationDelegate?.lastFetchedFahrenheitTemperature {
             updateTemperatureLabels(with: temperatureCelsius, temperatureFahrenheit: temperatureFahrenheit, conditionCode: lastFetchedConditionCode)
         }
-        celbtn.backgroundColor = UIColor.red
-        ferenhitBtn.backgroundColor = UIColor.blue
+
     }
 
     @IBAction func onLocationBtnPressed(_ sender: Any) {
@@ -100,7 +163,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         let temperatureCelsius = weatherData.current.temp_c
                         let temperatureFahrenheit = weatherData.current.temp_f
                         let conditionCode = weatherData.current.condition.code
-
+                        
+                    
+                        
+                        self.searchedCity.append(weatherData);
+                        self.saveSearchedList();
+                       
+                        
                         DispatchQueue.main.async {
                             self.locationDelegate?.lastFetchedCelsiusTemperature = temperatureCelsius
                             self.locationDelegate?.lastFetchedFahrenheitTemperature = temperatureFahrenheit
@@ -135,20 +204,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
     }
 
-    struct WeatherData: Codable {
-        let current: CurrentWeather
-    }
 
-    struct CurrentWeather: Codable {
-        let temp_c: Double
-        let temp_f: Double
-        let condition: Condition
-    }
-
-    struct Condition: Codable {
-        let text: String
-        let code: Int
-    }
 
     class MyLocationDelegate: NSObject, CLLocationManagerDelegate {
         var apiKey: String
@@ -177,6 +233,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
                                 self.lastFetchedFahrenheitTemperature = weatherData.current.temp_f
                                 let conditionCode = weatherData.current.condition.code
 
+                               
+                                
                                 DispatchQueue.main.async {
                                     self.viewController?.updateTemperatureLabels(with: weatherData.current.temp_c, temperatureFahrenheit: weatherData.current.temp_f, conditionCode: conditionCode)
                                     self.viewController?.conditionLabel.text = "Condition: \(weatherData.current.condition.text)"
