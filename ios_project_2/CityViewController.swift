@@ -41,13 +41,8 @@ class CityViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 }
             }
         
-        
-        
-        if searchedCity.isEmpty {
-            dataLabel.text = "No cities searched."
-        } else {
-            dataLabel.text = "Number of cities searched: \(searchedCity.count)"
-        }
+    
+        dataLabel.text = "Cities searched recently"
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -80,7 +75,7 @@ class CityViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let image = weatherConditionImageMap[searchedCity[indexPath.row].current.condition.code]
        
         cell.imageView?.image = UIImage(named: image ?? "partlyCloude")
-        
+    
         return cell
     }
     

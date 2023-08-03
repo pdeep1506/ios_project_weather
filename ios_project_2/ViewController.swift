@@ -74,8 +74,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-
-    
     func saveSearchedList(){
         var searchDefaults : [WeatherData] = [];
         
