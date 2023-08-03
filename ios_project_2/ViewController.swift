@@ -153,7 +153,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     func fetchWeatherData(for city: String) {
         let urlString = "https://api.weatherapi.com/v1/current.json?key=\(apiKey)&q=\(city)&units=metric"
-
+        print("I am called")
         if let url = URL(string: urlString) {
             URLSession.shared.dataTask(with: url) { (data, response, error) in
                 if let data = data {
@@ -163,7 +163,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         let temperatureCelsius = weatherData.current.temp_c
                         let temperatureFahrenheit = weatherData.current.temp_f
                         let conditionCode = weatherData.current.condition.code
-                        
+                        print("weather data \(weatherData)")
                     
                         
                         self.searchedCity.append(weatherData);
