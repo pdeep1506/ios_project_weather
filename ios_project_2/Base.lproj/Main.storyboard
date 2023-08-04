@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -100,14 +100,14 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="kUB-ji-cSR">
                                                         <rect key="frame" x="0.0" y="0.0" width="393" height="690.33333333333337"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="partlyCloude" translatesAutoresizingMaskIntoConstraints="NO" id="LdP-AD-TwP" customClass="image">
-                                                                <rect key="frame" x="0.0" y="0.0" width="393" height="345.33333333333331"/>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LdP-AD-TwP" customClass="image">
+                                                                <rect key="frame" x="0.0" y="0.0" width="393" height="345"/>
                                                             </imageView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="WYH-of-qMU">
-                                                                <rect key="frame" x="0.0" y="345.33333333333326" width="393" height="345"/>
+                                                                <rect key="frame" x="0.0" y="345" width="393" height="345.33333333333326"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="xhg-tb-DWP">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="393" height="345"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="393" height="345.33333333333331"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="8rs-Nz-UYo">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="73.666666666666671"/>
@@ -134,7 +134,7 @@
                                                                                                 </connections>
                                                                                             </button>
                                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RH5-Qo-OBI">
-                                                                                                <rect key="frame" x="76.333333333333314" y="40.333333333333371" width="35.666666666666657" height="33.333333333333343"/>
+                                                                                                <rect key="frame" x="76.333333333333314" y="40.333333333333314" width="35.666666666666657" height="33.333333333333343"/>
                                                                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                                 <state key="normal" title="Button"/>
                                                                                                 <buttonConfiguration key="configuration" style="plain" title="C">
@@ -149,7 +149,7 @@
                                                                                 </subviews>
                                                                             </stackView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oU0-wo-Vt3">
-                                                                                <rect key="frame" x="0.0" y="94.666666666666643" width="393" height="250.33333333333337"/>
+                                                                                <rect key="frame" x="0.0" y="94.666666666666671" width="393" height="250.66666666666663"/>
                                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="37"/>
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
@@ -276,7 +276,6 @@
     <resources>
         <image name="location.circle.fill" catalog="system" width="128" height="123"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
-        <image name="partlyCloude" width="58.666667938232422" height="66"/>
         <image name="rainy_day" width="59.666667938232422" height="66"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
