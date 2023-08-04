@@ -28,7 +28,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     private let apiKey = "f02ae5f044a34fa68a6205402230108"
 
     let weatherConditionImageMap: [Int: String] = [
-        1003: "partlyCloude",
+        1003: "cloudy",
         1240: "rainy_day",
         1243: "rainy_day",
         1246: "rainy_night",
@@ -37,7 +37,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         1000: "sunny",
         1195: "rainy",
         1030: "rainy",
+        1063: "rainy"
     ]
+
 
     var lastFetchedConditionCode: Int?
 
@@ -191,16 +193,29 @@ class ViewController: UIViewController, UITextFieldDelegate {
         } else {
             tempLabel.text = "\(temperatureFahrenheit)°F"
         }
+
         if let conditionCode = conditionCode {
-              print("Condition Code: \(conditionCode)")
-          } else {
-              print("Condition Code: N/A")
-          }
-        if let conditionCode = conditionCode, let imageName = weatherConditionImageMap[conditionCode] {
-            imageChangeLabel.image = UIImage(named: imageName)
+            print("Condition Code: \(conditionCode)")
+            if let imageName = weatherConditionImageMap[conditionCode] {
+                if let image = UIImage(named: imageName) {
+                    imageChangeLabel.image = image
+                } else {
+                    print("Image not found for condition code \(conditionCode) with image name '\(imageName)'")
+              
+                    imageChangeLabel.image = UIImage(named: "sunny")
+                }
+            } else {
+                print("No image mapping found for condition code \(conditionCode)")
+                
+                imageChangeLabel.image = UIImage(named: "sunny")
+            }
+        } else {
+            print("Condition Code: N/A")
+          
+            imageChangeLabel.image = UIImage(named: "sunny")
         }
-        
     }
+
 
 
 
