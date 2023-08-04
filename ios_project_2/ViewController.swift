@@ -28,7 +28,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     private let apiKey = "f02ae5f044a34fa68a6205402230108"
 
     let weatherConditionImageMap: [Int: String] = [
-        1003: "cloudy",
+        1003: "partlyCloude",
         1240: "rainy_day",
         1243: "rainy_day",
         1246: "rainy_night",
@@ -37,7 +37,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         1000: "sunny",
         1195: "rainy",
         1030: "rainy",
-        1063: "rainy"
+        1063: "rainy",
+        1009: "rainy",
     ]
 
 
@@ -152,8 +153,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
 
     func fetchWeatherData(for city: String) {
-        let urlString = "https://api.weatherapi.com/v1/current.json?key=\(apiKey)&q=\(city)&units=metric"
-        print("I am called")
+        let encodedCity = city.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        let urlString = "https://api.weatherapi.com/v1/current.json?key=\(apiKey)&q=\(encodedCity)&units=metric"
+
         if let url = URL(string: urlString) {
             URLSession.shared.dataTask(with: url) { (data, response, error) in
                 if let data = data {
@@ -163,12 +165,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         let temperatureCelsius = weatherData.current.temp_c
                         let temperatureFahrenheit = weatherData.current.temp_f
                         let conditionCode = weatherData.current.condition.code
-                        print("weather data \(weatherData)")
-                    
                         
-                        self.searchedCity.append(weatherData);
-                        self.saveSearchedList();
-                       
+                        self.searchedCity.append(weatherData)
+                        self.saveSearchedList()
                         
                         DispatchQueue.main.async {
                             self.locationDelegate?.lastFetchedCelsiusTemperature = temperatureCelsius
@@ -186,6 +185,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }.resume()
         }
     }
+
 
     func updateTemperatureLabels(with temperatureCelsius: Double, temperatureFahrenheit: Double, conditionCode: Int?) {
         if activeBtn == "C" {
